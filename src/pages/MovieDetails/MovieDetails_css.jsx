@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export const Section = styled.section`
     display: flex;
@@ -17,7 +17,7 @@ export const Div = styled.div`
     width: 40%;
 
 `
-export const LinkBackStyled = styled(Link)`
+export const LinkBackStyled = styled(NavLink)`
     display: inline-block;
     width: 150px;
     height: 22px;

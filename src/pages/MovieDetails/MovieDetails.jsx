@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
@@ -44,10 +45,13 @@ const MovieDetails = () => {
             </Section>
             <section>
                     <h3>Additional information</h3>
-                    <StyledLink to="cast">Cast</StyledLink>
-                    <StyledLink to="reviews">Reviews</StyledLink>
-            </section>
-            <Outlet/></>)}
+                    <StyledLink to="cast" state={{ from: location.state.from }}>Cast</StyledLink>
+                    <StyledLink to="reviews" state={{ from: location.state.from }}>Reviews</StyledLink>
+                </section>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Outlet/>
+                </Suspense>
+            </>)}
         </div>)
 }
 
