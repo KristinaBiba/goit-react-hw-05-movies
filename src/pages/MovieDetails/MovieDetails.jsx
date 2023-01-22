@@ -1,4 +1,4 @@
-import { Outlet, useParams, useLocation, Link } from "react-router-dom";
+import { Outlet, useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { fetchMovieDetails } from '../../api/fetchFunction';

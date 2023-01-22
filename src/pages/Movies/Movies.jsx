@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import { Searchbar } from '../../components/Searchbar/Searchbar';
@@ -11,27 +11,32 @@ const Movies = () => {
 
     const [movies, setMovies] = useState([]);
     const [searchName, setSearchName] = useState('');
-    const [page, setPage] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
     const location = useLocation();
+    const query = searchParams.get("query") ?? "";
 
     useEffect(() => {   
+        if (query !== '') {
+            setSearchName(query);
+        }
+
         if (searchName === '') {
             return;}
 
         const fetchData = async () => {
-        const searchMovies = await fetchSearchMovie(searchName, page);
-        setMovies(p => [...p, ...searchMovies]);
+        const searchMovies = await fetchSearchMovie(searchName);
+        setMovies(searchMovies);
         }  
     
         fetchData().catch(console.error);
-    }, [searchName, page]);
+    }, [searchName, query]);
 
     const handleSearch = (searchName) => {
     setMovies([]);
-    setPage(1);
     setSearchName(searchName);
+    setSearchParams({ query: searchName });          
     };
-    
+
     return (
         <section>
             <Searchbar onSearchMovie={handleSearch} />

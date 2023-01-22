@@ -10,9 +10,9 @@ export const fetchTrendMovies = async () => {
   return resposeTrendMovies.results;
 };
 
-export const fetchSearchMovie = async (searchName, page) => {
+export const fetchSearchMovie = async searchName => {
   const respose = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchName}&page=${page}&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchName}&page=1&include_adult=false`
   );
   const resposeSearchMovies = await respose.json();
 
@@ -44,7 +44,6 @@ export const fetchMovieReviews = async movieId => {
 
 fetchSearchMovie.propTypes = {
   searchName: PropTypes.string,
-  page: PropTypes.number,
 };
 
 fetchMovieDetails.propTypes = {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Input } from './Searchbar_css';
 
-export function Searchbar({onSearchMovie}) {
+export function Searchbar({onSearchMovie, onChange}) {
 
     const [searchName, setSearchName] = useState('');
 
